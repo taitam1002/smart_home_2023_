@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" room="width=device-width, initial-scale=1" />
+  <title>Smart Home</title>
+  <link rel="icon" type="image/x-icon" href="img/smarthome.png" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1><b>Smart Home</b></h1>
+    <ul id="menu">
+      <li><a href="#" onclick="changeRoom(1)">HOME</a></li>
+      <li><a href="#" onclick="changeRoom(2)">LIVING ROOM</a></li>
+      <li><a href="#" onclick="changeRoom(3)">KITCHEN</a></li>
+      <li><a href="#" onclick="changeRoom(4)">BEDROOM</a></li>
+      <li><a href="#" onclick="changeRoom(5)">GRAPHICS</a></li>
+    </ul>
+  </header>
+
+  <main>
+    <!-- trang chủ -->
+    <div id="room1" class="room active">
+      <h1 style="font-family: 'Courier New'; padding-left: 50px">
+        Welcome to Smart Home
+      </h1>
+    </div>
+    <!-- phòng khách -->
+    <div id="room2" class="room">
+      <div class="row_1" style="padding-bottom: 300px">
+        <h2 style="font-size: 30px">Sensors</h2>
+        <div class="column_4" id="left">
+          <h1><img src="img/hot.png" class="sensor" alt="temperature sensor"/></h1>
+          <h2 id="nhietdo"></h2>
+          <h2>Temperature</h2>
+        </div>
+        <div class="column_4">
+          <h1><img src="img/humidity.png" class="sensor" alt="humidity sensor" /></h1>
+          <h2 id="doam"></h2>
+          <h2>Humidity</h2>
+        </div>
+        <div class="column_4">
+          <h1><img src="img/brightness.png" class="sensor" alt="light sensor" /></h1>
+          <h2 id="anhsang"></h2>
+          <h2>Light Intensity</h2>
+        </div>
+        <div class="column_4" id="right">
+          <h1><img src="img/clean_air.png" class="sensor" alt="air sensor"/></h1>
+          <h2 id="khongkhi"></h2>
+          <h2>Air Quality</h2>
+        </div>
+      </div>
+      <div class="row_2">
+        <h2 style="font-size: 30px">Devices</h2>
+        <div class="column_4">
+          <h3>Fan</h3>
+          <img src="img/fan.png" class="devices" id="fan" alt="fan" /><br><br>
+          <button type="button" id="btn1">On</button>
+          <button type="button" id="btn9">Off</button>
+        </div>
+        <div class="column_4">
+          <h3>Lights</h3>
+          <img
+            src="img/light_bulb.png"
+            class="devices"
+            id="bulb"
+            alt="light bulb"
+          /><br><br>
+          <button type="button" id="btn2">On</button>
+          <button type="button" id="btn10">Off</button>
+        </div>
+        <div class="column_4">
+          <h3>Curtain</h3>
+          <img src="img/curtain_half.png" class="devices" id="curtain" alt="curtain" />
+          <div class="slidecontainer">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="40"
+              class="slider"
+              id="range_liv"
+            />
+            <p>
+              <b>Close: <span id="value1"></span></b>
+            </p>
+          </div>
+        </div>
+        <div class="column_4">
+          <h3>Air Filter</h3>
+          <img
+            src="img/air_off.png"
+            class="devices"
+            id="airfilter"
+            alt="air filter"
+          /><br /><br />
+          <button type="button" id="btn3">On</button>
+          <button type="button" id="btn11">Off</button>
+        </div>
+      </div>
+    </div>
+    <!-- phòng bếp -->
+    <div id="room3" class="room">
+      <div class="row_1" style="padding-bottom: 300px">
+        <h2 style="font-size: 30px">Sensors</h2>
+        <div class="column_2" id="left">
+          <h1><img src="img/gas.png" class="sensor" alt="gas sensor"/></h1>
+          <h2 id="khigas"></h2>
+          <h2>Gas</h2>
+        </div>
+        <div class="column_2" id="right">
+          <h1><img src="img/smoke.png" class="sensor" alt="smoke sensor"/></h1>
+          <h2 id="khoi"></h2>
+          <h2>CO2</h2>
+        </div>
+      </div>
+      <div class="row_2">
+        <h2 style="font-size: 30px">Devices</h2>
+        <div class="column_2">
+          <h3>Vent</h3>
+          <img src="img/kitchen_off.png" class="devices" id="hood" alt="vent" /><br /><br />
+          <button type="button" id="btn4">On</button>
+          <button type="button" id="btn12">Off</button>
+        </div>
+        <div class="column_2">
+          <h3>Humidifier</h3>
+          <img src="img/humidifier_off.png" class="devices" id="humidifier" alt="humidifier" /><br /><br />
+          <button type="button" id="btn5">On</button>
+          <button type="button" id="btn13">Off</button>
+        </div>
+      </div>
+    </div>
+    <!-- phòng ngủ -->
+    <div id="room4" class="room">
+      <div class="row_1" style="padding-bottom: 300px">
+        <h2 style="font-size: 30px">Sensors</h2>
+        <div class="column_3" id="left">
+          <h1><img src="img/hot.png" class="sensor" alt="temperature sensor"/></h1>
+          <h2 id="nhietdo_bed"></h2>
+          <h2>Temperature</h2>
+        </div>
+        <div class="column_3">
+          <h1><img src="img/brightness.png" class="sensor" alt="light sensor" /></h1>
+          <h2 id="anhsang_bed"></h2>
+          <h2>Light</h2>
+        </div>
+        <div class="column_3" id="right">
+          <h1><img src="img/clean_air.png" class="sensor" alt="air sensor" /></h1>
+          <h2 id="khongkhi_bed"></h2>
+          <h2>Air Quality</h2>
+        </div>
+      </div>
+      <div class="row_2">
+        <h2 style="font-size: 30px">Devices</h2>
+        <div class="column_4">
+          <h3>Fan</h3>
+          <img src="img/fan.png" class="devices" id="fan_bed" alt="fan" /><br /><br />
+          <button type="button" id="btn6">On</button>
+          <button type="button" id="btn14">Off</button>
+        </div>
+        <div class="column_4">
+          <h3>Lamp</h3>
+          <img src="img/light_bulb.png" class="devices" id="bulb_bed" alt="lamp" />
+          <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="1" class="slider" id="range_bulb" />
+            <p>
+              <b>Sleep light: <span id="value_bulb"></span></b>
+            </p>
+          </div>
+        </div>
+        <div class="column_4">
+          <h3>Curtain</h3>
+          <img src="img/curtain_half.png" class="devices" id="curtain_bed" alt="curtain" />
+          <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="40" class="slider" id="range_bed" />
+            <p>
+              <b>Close: <span id="value2"></span></b>
+            </p>
+          </div>
+        </div>
+        <div class="column_4">
+          <h3>Air Filter</h3>
+          <img src="img/air_off.png" class="devices" id="airfilter_bed" alt="air filter" /><br /><br />
+          <button type="button" id="btn7">On</button>
+          <button type="button" id="btn15">Off</button><br />
+        </div>
+      </div>
+    </div>
+    <!-- Đồ thị -->
+    <div id="room5" class="room">
+      <div>
+        <canvas style="max-width: 500px; max-height: 400px" id="myChart" class="column_2"></canvas>
+        <canvas style="max-width: 500px; max-height: 400px" id="myChart1" class="column_2"></canvas>
+      </div>
+      <div id="chart1" class="chart active" class="column_2" >
+        <script>
+          const xValues = [];
+          const yValues = [];
+          const yValues1 = [];
+          var ctx = document.getElementById("myChart").getContext("2d");
+          var myChart = new Chart(ctx, {
+            type: "line",
+            data: {
+              labels: xValues,
+              datasets: [
+                {
+                  fill: false,
+                  lineTension: 0,
+                  backgroundColor: "rgba(255, 0, 0, 1)",
+                  borderColor: "rgba(255, 0, 0, 0.2)",
+                  borderWidth: 1,
+                  label: "Temperature",
+                  data: yValues,
+                },
+                {
+                  fill: false,
+                  lineTension: 0,
+                  backgroundColor: "rgba(0, 64, 232, 1)",
+                  borderColor: "rgba(0, 64, 232, 0.2)",
+                  borderWidth: 1,
+                  label: "Humidity ",
+                  data: yValues1,
+                },
+              ],
+            },
+            options: {
+              legend: { display: false },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    min: 0,
+                    max: 100
+                  }
+                }]
+              }
+            }
+          });
+          function updateChart() {
+            const currentTime = new Date().toLocaleTimeString();
+            const newYValue = parseFloat(nhietDo.innerHTML);
+            const newYValue1 = parseFloat(doAm.innerHTML);
+            xValues.push(currentTime);
+            yValues.push(newYValue);
+            yValues1.push(newYValue1);
+            const maxDataPoints = 12;
+            if (xValues.length > maxDataPoints) {
+              xValues.shift();
+              yValues.shift();
+              yValues1.shift();
+            }
+            myChart.data.labels = xValues;
+            myChart.data.datasets[0].data = yValues;
+            myChart.data.datasets[1].data = yValues1;
+            myChart.update();
+          }
+          setInterval(updateChart, 5000);
+        </script>
+      </div>
+      <div id="chart2" class="chart active" class="column_2" >
+        <script>
+          const xValues1 = [];
+          const yValues2 = [];
+          const yValues3 = [];
+          var ctx = document.getElementById("myChart1").getContext("2d");
+          var myChart1 = new Chart(ctx, {
+            type: "line",
+            data: {
+              labels: xValues1,
+              datasets: [
+                {
+                  fill: false,
+                  lineTension: 0,
+                  backgroundColor: "rgba(116, 45, 82, 1)",
+                  borderColor: "rgba(116, 45, 82, 0.2)",
+                  borderWidth: 1,
+                  label: "Light Intensity",
+                  data: yValues,
+                },
+                {
+                  fill: false,
+                  lineTension: 0,
+                  backgroundColor: "rgba(0, 151, 127, 1)",
+                  borderColor: "rgba(0, 151, 127, 0.2)",
+                  borderWidth: 1,
+                  label: "Air Quatily",
+                  data: yValues3,
+                },
+              ],
+            },
+            options: {
+              legend: { display: false },
+              scales: {
+                yAxes: [{
+                  ticks: [{
+                    min: 0,
+                    max: 100
+                  }]
+                }]
+              }
+            }
+          });
+          function updateChart() {
+            const currentTime = new Date().toLocaleTimeString();
+            const newYValue2 = parseFloat(anhSang.innerHTML);
+            const newYValue3 = parseFloat(khongKhi.innerHTML);
+            xValues1.push(currentTime);
+            yValues2.push(newYValue2);
+            yValues3.push(newYValue3);
+            const maxDataPoints = 12;
+            if (xValues1.length > maxDataPoints) {
+              xValues1.shift();
+              yValues2.shift();
+              yValues3.shift();
+            }
+            myChart1.data.labels = xValues1;
+            myChart1.data.datasets[0].data = yValues2;
+            myChart1.data.datasets[1].data = yValues3;
+            myChart1.update();
+          }
+          setInterval(updateChart, 5000);
+        </script>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>Design by Duy and Tam</p>
+    <p>Class Iot 2021</p>
+  </footer>
+
+  <script src="function.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBBTqXBZ5nA-lqfVSFteomVaEstgsKRqcY",
+      authDomain: "smart-home-1327.firebaseapp.com",
+      databaseURL: "https://smart-home-1327-default-rtdb.firebaseio.com",
+      projectId: "smart-home-1327",
+      storageBucket: "smart-home-1327.appspot.com",
+      messagingSenderId: "1066762529577",
+      appId: "1:1066762529577:web:40d8482cdf06b241526538",
+      measurementId: "G-T521XC1LWQ"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+  <script>
+    var nhietDo = document.getElementById("nhietdo");
+    var dbRef1 = firebase.database().ref("Sensor").child("temperature");
+    var anhSang = document.getElementById("anhsang");
+    var dbRef2 = firebase.database().ref("Sensor").child("light");
+    var khongKhi = document.getElementById("khongkhi");
+    var dbRef3 = firebase.database().ref("Sensor").child("air");
+    var doAm = document.getElementById("doam");
+    var dbRef4 = firebase.database().ref("Sensor").child("humidity");
+    
+    dbRef1.on("value", (snap) => (nhietDo.innerHTML = snap.val() + "°C"));
+    dbRef2.on("value", (snap) => (anhSang.innerHTML = snap.val() + "%"));
+    dbRef3.on("value", (snap) => (khongKhi.innerHTML = snap.val() + "%" ));
+    dbRef4.on("value", (snap) => (doAm.innerHTML = snap.val() + "%"));
+  </script>
+  <script>
+    var khiGas = document.getElementById("khigas");
+    var dbRef5 = firebase.database().ref("Kitchen").child("Khigas");
+    var khoiBep = document.getElementById("khoi");
+    var dbRef6 = firebase.database().ref("Kitchen").child("Khoi");
+
+    dbRef5.on("value", (snap) => (khiGas.innerText = snap.val() + "%"));
+    dbRef6.on("value", (snap) => (khoiBep.innerText = snap.val()+ "%"));
+  </script>
+  <script>
+    var nhietDo_bed = document.getElementById("nhietdo_bed");
+    var dbRef7 = firebase.database().ref("Bedroom").child("Nhietdo");
+    var anhSang_bed = document.getElementById("anhsang_bed");
+    var dbRef8 = firebase.database().ref("Bedroom").child("Anhsang");
+    var khongKhi_bed = document.getElementById("khongkhi_bed");
+    var dbRef9 = firebase.database().ref("Bedroom").child("Khongkhi");
+
+    dbRef7.on("value", (snap) => (nhietDo_bed.innerText = snap.val() + "°C" ));
+    dbRef8.on("value", (snap) => (anhSang_bed.innerText = snap.val() + "%"));
+    dbRef9.on("value", (snap) => (khongKhi_bed.innerText = snap.val()+ "%"));
+  </script>
+  
+</body>
+
+</html>
